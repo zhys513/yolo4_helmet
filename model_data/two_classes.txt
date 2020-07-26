@@ -1,0 +1,2 @@
+otherObj
+person
