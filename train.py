@@ -1,6 +1,3 @@
-#-------------------------------------#
-#       对数据集进行训练
-#-------------------------------------#
 import os
 import numpy as np
 import time
@@ -114,12 +111,12 @@ if __name__ == "__main__":
     #-------------------------------#
     Use_Data_Loader = True
 
-    annotation_path = '2020_train.txt'
+    annotation_path = 'head_train.txt'
     #-------------------------------#
     #   获得先验框和类
     #-------------------------------#
     anchors_path = 'model_data/yolo_anchors.txt'
-    classes_path = 'model_data/two_classes.txt'
+    classes_path = 'model_data/head_classes.txt'
     class_names = get_classes(classes_path)
     anchors = get_anchors(anchors_path)
     num_classes = len(class_names)
@@ -130,7 +127,7 @@ if __name__ == "__main__":
     #-------------------------------------------#
     #   权值文件的下载请看README
     #-------------------------------------------#
-    model_path = "model_data/yolo4_voc_weights.pth"
+    model_path = "model_data/yolo4_weights.pth"
     # 加快模型训练的效率
     print('Loading weights into state dict...')
     device = torch.device('cuda' if torch.cuda.is_available() else 'cpu')

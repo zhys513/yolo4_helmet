@@ -1,13 +1,9 @@
-#-------------------------------------#
-#       对单张图片进行预测
-#-------------------------------------#
 from yolo import YOLO
 from PIL import Image
 import os
 import time
 yolo = YOLO()
 
-# img = './img/street.jpg'
 
 imgsPath = './img/'
 

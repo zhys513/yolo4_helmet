@@ -24,6 +24,7 @@ while (True):
 
     cv2.imshow("video", frame)
     c = cv2.waitKey(1) & 0xff
+    # 按ESC键退出
     if c == 27:
         capture.release()
         break

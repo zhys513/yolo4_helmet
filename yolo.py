@@ -1,6 +1,3 @@
-#-------------------------------------#
-#       创建YOLO类
-#-------------------------------------#
 import cv2
 import numpy as np
 import colorsys
@@ -13,16 +10,22 @@ from PIL import Image,ImageFont, ImageDraw
 from torch.autograd import Variable
 from utils.utils import non_max_suppression, bbox_iou, DecodeBox,letterbox_image,yolo_correct_boxes
 
-#--------------------------------------------#
-#   使用自己训练好的模型预测需要修改2个参数
-#   model_path和classes_path都需要修改！
-#--------------------------------------------#
+
+'''
+需要根据你自己的情况修改参数：
+        "model_path"为模型的位置，可以是原来yolo的weight或者是你训练好的
+        "anchors_path"为记录anchor列表的文本
+        "classes_path"为指定你自身的需要识别的类别以及其个数
+        "model_image_size"你可以修改输入的图片大小，但需要为32的倍数以及
+        "confidence":置信度，也就是当概率大于这个值的时候，就会判断哪为正例
+        "cuda"是否使用GPU
+'''
+
 class YOLO(object):
     _defaults = {
-        # "model_path": 'model_data/yolo4_voc_weights.pth',
-        "model_path": 'logs/Epoch50-Total_Loss6.4351-Val_Loss7.0930.pth',
+        "model_path": 'logs/head_detect.pth',
         "anchors_path": 'model_data/yolo_anchors.txt',
-        "classes_path": 'model_data/two_classes.txt',
+        "classes_path": 'model_data/head_classes.txt',
         "model_image_size" : (416, 416, 3),
         "confidence": 0.5,
         "cuda": True
@@ -35,27 +38,20 @@ class YOLO(object):
         else:
             return "Unrecognized attribute name '" + n + "'"
 
-    #---------------------------------------------------#
-    #   初始化YOLO
-    #---------------------------------------------------#
+
     def __init__(self, **kwargs):
         self.__dict__.update(self._defaults)
         self.class_names = self._get_class()
         self.anchors = self._get_anchors()
         self.generate()
-    #---------------------------------------------------#
-    #   获得所有的分类
-    #---------------------------------------------------#
+
     def _get_class(self):
         classes_path = os.path.expanduser(self.classes_path)
         with open(classes_path) as f:
             class_names = f.readlines()
         class_names = [c.strip() for c in class_names]
         return class_names
-    
-    #---------------------------------------------------#
-    #   获得所有的先验框
-    #---------------------------------------------------#
+
     def _get_anchors(self):
         anchors_path = os.path.expanduser(self.anchors_path)
         with open(anchors_path) as f:
@@ -97,9 +93,6 @@ class YOLO(object):
             map(lambda x: (int(x[0] * 255), int(x[1] * 255), int(x[2] * 255)),
                 self.colors))
 
-    #---------------------------------------------------#
-    #   检测图片
-    #---------------------------------------------------#
     def detect_image(self, image):
         image_shape = np.array(np.shape(image)[0:2])
 

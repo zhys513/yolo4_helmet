@@ -1,5 +1,5 @@
 idl_file = "E:/Datasets/head/brainwash/brainwash/brainwash_train.idl"
-output = 'train.txt'
+output = 'head_train.txt'
 
 
 
