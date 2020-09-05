@@ -97,7 +97,7 @@ if __name__ == "__main__":
     #   显存比较小可以使用416x416
     #   显存比较大可以使用608x608
     #-------------------------------#
-    input_shape = (416,416)
+    input_shape = (416, 416)
     #-------------------------------#
     #   tricks的使用设置
     #-------------------------------#
@@ -111,12 +111,12 @@ if __name__ == "__main__":
     #-------------------------------#
     Use_Data_Loader = True
 
-    annotation_path = 'head_train.txt'
+    annotation_path = 'helmet_train.txt'
     #-------------------------------#
     #   获得先验框和类
     #-------------------------------#
     anchors_path = 'model_data/yolo_anchors.txt'
-    classes_path = 'model_data/head_classes.txt'
+    classes_path = 'model_data/helmet.txt'
     class_names = get_classes(classes_path)
     anchors = get_anchors(anchors_path)
     num_classes = len(class_names)

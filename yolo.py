@@ -23,10 +23,10 @@ from utils.utils import non_max_suppression, bbox_iou, DecodeBox,letterbox_image
 
 class YOLO(object):
     _defaults = {
-        "model_path": 'logs/head_detect.pth',
+        "model_path": 'logs/Epoch1-Total_Loss114.0190-Val_Loss14.3715.pth',
         "anchors_path": 'model_data/yolo_anchors.txt',
-        "classes_path": 'model_data/head_classes.txt',
-        "model_image_size" : (416, 416, 3),
+        "classes_path": 'model_data/helmet.txt',
+        "model_image_size": (416, 416, 3),
         "confidence": 0.5,
         "cuda": True
     }
