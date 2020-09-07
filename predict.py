@@ -11,6 +11,7 @@ imgsList = os.listdir(imgsPath)
 for img in imgsList:
     start = time.time()
     imgPath = imgsPath + img
+    # imgPath = imgsPath + 'hard_hat_workers3651.png'
     image = Image.open(imgPath)
 
     r_image = yolo.detect_image(image)

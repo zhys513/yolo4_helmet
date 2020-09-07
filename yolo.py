@@ -23,9 +23,9 @@ from utils.utils import non_max_suppression, bbox_iou, DecodeBox,letterbox_image
 
 class YOLO(object):
     _defaults = {
-        "model_path": 'logs/Epoch1-Total_Loss114.0190-Val_Loss14.3715.pth',
-        "anchors_path": 'model_data/yolo_anchors.txt',
-        "classes_path": 'model_data/helmet.txt',
+        "model_path": 'logs/Epoch48-Total_Loss20.0357-Val_Loss14.5754.pth',
+        "anchors_path": 'model_data/helmet_anchors.txt',
+        "classes_path": 'model_data/helmet_classes.txt',
         "model_image_size": (416, 416, 3),
         "confidence": 0.5,
         "cuda": True
@@ -162,6 +162,7 @@ class YOLO(object):
                 text_origin = np.array([left, top - label_size[1]])
             else:
                 text_origin = np.array([left, top + 1])
+
 
             for i in range(thickness):
                 draw.rectangle(

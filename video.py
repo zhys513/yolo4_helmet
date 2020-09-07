@@ -6,13 +6,13 @@ import time
 
 
 yolo = YOLO()
-# 调用摄像头
+
 capture = cv2.VideoCapture('./video/test.mp4')
 fps = 0.0
-while (True):
+while True:
     t1 = time.time()
     ref, frame = capture.read()
-    # 因为opencv读取后的格式是BGR，所以这里需要转换为RGB格式
+
     frame = cv2.cvtColor(frame, cv2.COLOR_BGR2RGB)
     frame = Image.fromarray(np.uint8(frame))
     frame = np.array(yolo.detect_image(frame))
